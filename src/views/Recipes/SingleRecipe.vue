@@ -161,7 +161,9 @@ export default {
   created() {
     recipes.getRecipeById(this.id).then((res) => {
       this.recipe = res.data;
-
+      console.log(this.recipe.favorite, 111);
+      this.selected = this.recipe.favorite;
+      console.log(this.selected, 222);
       this.ingredients = JSON.parse(res.data.ingredients);
       console.log(this.ingredients);
       this.instructions = JSON.parse(res.data.instructions);
