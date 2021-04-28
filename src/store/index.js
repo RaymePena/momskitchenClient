@@ -8,10 +8,10 @@ export default new Vuex.Store({
 	state: {
 		isLoggedIn: false,
 		// apiUrl: `${window.location.protocol}//${window.location.hostname}:3000/api`,
-		apiUrl: `Momskitchen-env.eba-bsgkpnpq.us-east-1.elasticbeanstalk.com/api`,
+		apiUrl: `http://momskitchen-env.eba-bsgkpnpq.us-east-1.elasticbeanstalk.com/api`,
 		username: null,
 		userId: null,
-		getImageUrl: `${window.location.protocol}//${window.location.hostname}:3000/`,
+		getImageUrl: `http://momskitchen-env.eba-bsgkpnpq.us-east-1.elasticbeanstalk.com/`,
 		allIngredients: [],
 		recipeTypes: [],
 		wholeNumbers: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15'],
