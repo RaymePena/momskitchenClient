@@ -9,7 +9,6 @@ import editRecipe from "../views/Recipes/RecipeEdit.vue";
 import SingleRecipe from "../views/Recipes/SingleRecipe.vue";
 import Dashboard from "../views/Recipes/Dashboard.vue";
 import Favorites from "../views/Recipes/FavoriteRecipe.vue";
-import TestNew from "../views/Recipes/TestNewRecipe.vue";
 import Groceries from '../views/Grocery/Groceries.vue'
 
 Vue.use(VueRouter);
@@ -53,20 +52,7 @@ const routes = [
       }
     },
   },
-  {
-    path: "/test-new",
-    name: "TestNew",
-    component: TestNew,
-    beforeEnter: (to, from, next) => {
-      if (!auth.isLoggedIn()) {
-        next();
-      }if (auth.isLoggedIn()) {
-        next();
-      } else {
-        next("/");
-      }
-    },
-  },
+  
   {
     path: "/recipe/add-recipe",
     name: "New-Recipe",
