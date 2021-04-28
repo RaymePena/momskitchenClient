@@ -25,16 +25,15 @@
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" app class="success">
       <v-list>
-        <v-list-item  to="/home">
-             <v-list-item-action>
-              <v-icon class="white--text">mdi-home-export-outline</v-icon>
-            </v-list-item-action>
-            <v-list-item-title class="white--text">
-              Home
-            </v-list-item-title>
+        <v-list-item to="/home">
+          <v-list-item-action>
+            <v-icon class="white--text">mdi-home-export-outline</v-icon>
+          </v-list-item-action>
+          <v-list-item-title class="white--text">
+            Home
+          </v-list-item-title>
         </v-list-item>
-        <v-list-item 
-          
+        <v-list-item
           v-for="link in links"
           :key="link.text"
           router
@@ -50,31 +49,31 @@
             }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-      
+
         <v-list-item v-if="!$store.state.isLoggedIn" to="/login">
-             <v-list-item-action>
-              <v-icon class="white--text">mdi-login-variant</v-icon>
-            </v-list-item-action>
-            <v-list-item-title class="white--text">
-              Login
-            </v-list-item-title>
+          <v-list-item-action>
+            <v-icon class="white--text">mdi-login-variant</v-icon>
+          </v-list-item-action>
+          <v-list-item-title class="white--text">
+            Login
+          </v-list-item-title>
         </v-list-item>
-        <v-list-item v-if="!$store.state.isLoggedIn" to="/signup">
-             <v-list-item-action>
-              <v-icon class="white--text">mdi-login-variant</v-icon>
-            </v-list-item-action>
-            <v-list-item-title class="white--text">
-              Signup
-            </v-list-item-title>
+        <v-list-item v-if="!$store.state.isLoggedIn" to="/sign-up">
+          <v-list-item-action>
+            <v-icon class="white--text">mdi-login-variant</v-icon>
+          </v-list-item-action>
+          <v-list-item-title class="white--text">
+            Signup
+          </v-list-item-title>
         </v-list-item>
-          <v-divider></v-divider>
-         <v-list-item v-if="$store.state.isLoggedIn" @click="logout()">
-             <v-list-item-action>
-              <v-icon class="white--text">mdi-login-variant</v-icon>
-            </v-list-item-action>
-            <v-list-item-title class="white--text">
-              Logout
-            </v-list-item-title>
+        <v-divider></v-divider>
+        <v-list-item v-if="$store.state.isLoggedIn" @click="logout()">
+          <v-list-item-action>
+            <v-icon class="white--text">mdi-login-variant</v-icon>
+          </v-list-item-action>
+          <v-list-item-title class="white--text">
+            Logout
+          </v-list-item-title>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
@@ -93,17 +92,11 @@ export default {
         { icon: "mdi-plus", text: "Add Recipe", route: "/recipe/add-recipe" },
         { icon: "mdi-heart", text: "Favorites", route: "/favorite" },
         { icon: "mdi-view-list", text: "Grocery List", route: "/groceries" },
-        
-       
       ],
-      
     };
   },
-  
-  created() {
-    
-    
-  },
+
+  created() {},
   methods: {
     logout: function() {
       auth.logout();

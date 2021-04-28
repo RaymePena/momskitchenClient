@@ -23,6 +23,9 @@ export function deleteFavorite(id) {
 export function updateRecipe(recipe) {
   return http().put("/recipe", recipe);
 }
+export function updatefavorite(recipe) {
+  return http().put(`/recipe/${recipe._id}`, recipe);
+}
 
 export function addFavorite(favorite) {
   return http().post("/recipe/favorite", favorite);

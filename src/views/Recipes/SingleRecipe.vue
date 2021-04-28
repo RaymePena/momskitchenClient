@@ -177,17 +177,35 @@ export default {
       window.print();
     },
 
-    addtoFavorite() {
+    addtoFavorite: async function() {
       this.selected = !this.selected;
+      this.recipe.favorite = this.selected;
+      console.log(this.recipe.favorite);
+
       const userId = user.getUserId();
       if (!userId) {
         this.$router.push({ name: "Login" });
       }
-      const favorite = {
+      const favorites = {
         userId: userId,
         recipeId: this.id,
       };
-      recipes.addFavorite(favorite);
+      const recipe = {
+        _id: this.id,
+        favorite: this.recipe.favorite,
+      };
+      recipes.addFavorite(favorites);
+      recipes.updatefavorite(recipe);
+      if (this.selected === false) {
+        console.log(this.recipe);
+        recipes.updatefavorite(recipe);
+        console.log(this.id, 0.0);
+        await recipes.deleteFavorite(this.id);
+        // const index = this.recipe.findIndex((reci) => reci._id === this.id);
+        // this.recipe.splice(index, 1);
+        this.recipe = {};
+        this.$router.push({ name: "Home" });
+      }
     },
 
     onScroll(e) {
