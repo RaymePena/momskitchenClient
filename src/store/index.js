@@ -7,7 +7,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
 	state: {
 		isLoggedIn: false,
-		apiUrl: `${window.location.protocol}//${window.location.hostname}:3000/api`,
+		// apiUrl: `${window.location.protocol}//${window.location.hostname}:3000/api`,
+		apiUrl: `Momskitchen-env.eba-bsgkpnpq.us-east-1.elasticbeanstalk.com/api`,
 		username: null,
 		userId: null,
 		getImageUrl: `${window.location.protocol}//${window.location.hostname}:3000/`,
