@@ -180,7 +180,7 @@
                     <v-img :src="imageUrl" aspect-ratio="2"></v-img>
                   </div>
                   <v-text-field
-                    label="Prep Time"
+                    label="Prep time in minutes"
                     v-model="prepTime"
                     :error-messages="PrepTimeError"
                     required
@@ -189,7 +189,7 @@
                   >
                   </v-text-field>
                   <v-text-field
-                    label="Cook Time"
+                    label="Cook time in minutes"
                     v-model="cookTime"
                     :error-messages="cookTimeError"
                     required
@@ -198,7 +198,7 @@
                   >
                   </v-text-field>
                   <v-text-field
-                    label="Serving"
+                    label="Servings"
                     v-model="servings"
                     :error-messages="ServingError"
                     required
@@ -284,19 +284,19 @@ export default {
     PrepTimeError() {
       const errors = [];
       if (!this.$v.prepTime.$dirty) return errors;
-      !this.$v.prepTime.required && errors.push("Prepare Time is required.");
+      !this.$v.prepTime.required && errors.push("Prep time is required.");
       return errors;
     },
     cookTimeError() {
       const errors = [];
       if (!this.$v.cookTime.$dirty) return errors;
-      !this.$v.cookTime.required && errors.push("Cook Time is required.");
+      !this.$v.cookTime.required && errors.push("Cook time is required.");
       return errors;
     },
     ServingError() {
       const errors = [];
       if (!this.$v.servings.$dirty) return errors;
-      !this.$v.servings.required && errors.push("Serving is required.");
+      !this.$v.servings.required && errors.push("Servings is required.");
       return errors;
     },
   },

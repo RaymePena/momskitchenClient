@@ -1,8 +1,8 @@
 <template>
     <v-container>
         <v-row >
-            <v-col cols="12" dm="4" lg="3" v-for="review in reviews" :key="review._id">
-                <v-card max-width="300" class="justify-center">
+            <v-col cols="12" md="4" lg="4" v-for="review in reviews" :key="review._id">
+                <v-card max-width="400" class="justify-center">
                     <v-card-title><strong>{{review.title}}</strong></v-card-title>
                         <v-card-text class="justify-center">
                         <v-row  >
