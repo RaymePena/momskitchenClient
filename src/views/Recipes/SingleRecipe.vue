@@ -199,10 +199,10 @@ export default {
       recipes.addFavorite(favorites);
       recipes.updatefavorite(recipe);
       if (this.selected === false) {
-        console.log(this.recipe);
+        console.log(this.recipe.favorite, 7777);
         recipes.updatefavorite(recipe);
         console.log(this.id, 0.0);
-        await recipes.deleteFavorite(this.id);
+        await recipes.deleteSingleRecipe(this.id);
         // const index = this.recipe.findIndex((reci) => reci._id === this.id);
         // this.recipe.splice(index, 1);
         this.recipe = {};

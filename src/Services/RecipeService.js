@@ -16,8 +16,8 @@ export function getRecipeById(id) {
 export function deleteRecipe(id) {
   return http().delete(`/recipe/${id}`);
 }
-export function deleteFavorite(id) {
-  return http().delete(`/recipe/favorite/${id}`);
+export function deleteSingleRecipe(id) {
+  return http().delete(`/single-recipe/${id}`);
 }
 
 export function updateRecipe(recipe) {

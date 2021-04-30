@@ -89,7 +89,8 @@ export default {
     },
     deleteFavorite: async function() {
       console.log(this.currentRecipeId);
-
+      // console.log(this.recipes);
+      await recipe.updatefavorite(recipe);
       await recipe.deleteFavorite(this.currentRecipeId);
       const index = this.recipes.findIndex(
         (recipe) => recipe._id === this.currentRecipeId
