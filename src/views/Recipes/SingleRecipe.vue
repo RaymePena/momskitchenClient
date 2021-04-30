@@ -196,17 +196,16 @@ export default {
         _id: this.id,
         favorite: this.recipe.favorite,
       };
-      recipes.addFavorite(favorites);
-      recipes.updateFavorite(recipe);
       if (this.selected === false) {
         console.log(this.recipe.favorite, 7777);
-        recipes.updateFavorite(recipe);
+        await recipes.updateFavorite(recipe);
         console.log(this.id, 0.0);
         await recipes.deleteSingleRecipe(this.id);
-        // const index = this.recipe.findIndex((reci) => reci._id === this.id);
-        // this.recipe.splice(index, 1);
         this.recipe = {};
-        this.$router.push({ name: "Home" });
+        this.$router.push({ name: "Favorite" });
+      } else {
+        recipes.addFavorite(favorites);
+        recipes.updateFavorite(recipe);
       }
     },
 
