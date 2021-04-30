@@ -5,7 +5,7 @@
         <v-card class="mt-5">
           <v-toolbar color="white" light flat>
             <v-icon left color="secondary">mdi-plus-outline</v-icon>
-            <v-toolbar-title> Add Recipe</v-toolbar-title>
+            <v-toolbar-title> Edit Recipe</v-toolbar-title>
           </v-toolbar>
           <v-form offset-sm4 enctype="multipart/form-data">
             <v-container>
@@ -23,7 +23,6 @@
                     small-chips
                     label="Type"
                   >
-
                   </v-autocomplete>
                   <!-- <v-text-field
                     v-model="RecipeType"
@@ -32,118 +31,124 @@
                   ></v-text-field> -->
                   <!-- start ingredients  -->
                   <v-card>
-                      <v-container>
-                        <v-card-title class="ml-0 pl-0">Ingredients:</v-card-title>
-                        
-                          <v-row v-for="(item, index) in $store.state.ingrendients" :key="index">
-                             <v-col cols="12" md="1" lg="1">
-                                  <v-autocomplete
-                                    v-model="item.whole"
-                                    :items="$store.state.wholeNumbers"
-                                    chips
-                                    small-chips
-                                    label="Qty"
-                                    dense
-                                  >
-                                  </v-autocomplete>
-                              </v-col>
-                              <v-col cols="12" md="2" lg="2">
-                                  <v-autocomplete
-                                    v-model="item.measure"
-                                    :items="$store.state.measures"
-                                    chips
-                                    small-chips
-                                    label="Measures"
-                                    dense
-                                  >
-                                  </v-autocomplete>
-                              </v-col>
-                                <v-col cols="12" md="2" lg="2">
-                                  <v-autocomplete
-                                    v-model="item.utensil"
-                                    :items="$store.state.utensils"
-                                    chips
-                                    small-chips
-                                    label="Utensils"
-                                    dense
-                                  >
-                                  </v-autocomplete>
-                              </v-col>
-                                 <v-col cols="12" md="4" sm="4" >
-                                  <v-text-field dense
-                                  :label="`Ingredient# ` + Number(index+1)"
-                                  v-model="item.ingredient"
-                                  ></v-text-field>
-                              </v-col>
-                                <v-col cols="12" md="2" sm="12">
-                                  <v-autocomplete
-                                    v-model="item.action"
-                                    :items="$store.state.actions"
-                                    chips
-                                    small-chips
-                                    label="Actions"
-                                    item-value="utensil"
-                                    item-text="utensil"
-                                    return-object
-                                    dense
-                                  >
-                                  
-                                  </v-autocomplete>
-                              </v-col>
-                              <v-col cols="12" md="1" lg="1">
-                                      <div class="d-flex justify-end" >
-                                          <v-btn icon @click="deleteIngredientField(index)">
-                                              <v-icon color="error">mdi-delete</v-icon>
-                                          </v-btn>
-                                      </div>
-                              </v-col>
-                          </v-row>
-                   </v-container>
+                    <v-container>
+                      <v-card-title class="ml-0 pl-0"
+                        >Ingredients:</v-card-title
+                      >
+
+                      <v-row
+                        v-for="(item, index) in $store.state.ingrendients"
+                        :key="index"
+                      >
+                        <v-col cols="12" md="1" lg="1">
+                          <v-autocomplete
+                            v-model="item.whole"
+                            :items="$store.state.wholeNumbers"
+                            chips
+                            small-chips
+                            label="Qty"
+                            dense
+                          >
+                          </v-autocomplete>
+                        </v-col>
+                        <v-col cols="12" md="2" lg="2">
+                          <v-autocomplete
+                            v-model="item.measure"
+                            :items="$store.state.measures"
+                            chips
+                            small-chips
+                            label="Measures"
+                            dense
+                          >
+                          </v-autocomplete>
+                        </v-col>
+                        <v-col cols="12" md="2" lg="2">
+                          <v-autocomplete
+                            v-model="item.utensil"
+                            :items="$store.state.utensils"
+                            chips
+                            small-chips
+                            label="Utensils"
+                            dense
+                          >
+                          </v-autocomplete>
+                        </v-col>
+                        <v-col cols="12" md="4" sm="4">
+                          <v-text-field
+                            dense
+                            :label="`Ingredient# ` + Number(index + 1)"
+                            v-model="item.ingredient"
+                          ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" md="2" sm="12">
+                          <v-autocomplete
+                            v-model="item.action"
+                            :items="$store.state.actions"
+                            chips
+                            small-chips
+                            label="Actions"
+                            item-value="utensil"
+                            item-text="utensil"
+                            return-object
+                            dense
+                          >
+                          </v-autocomplete>
+                        </v-col>
+                        <v-col cols="12" md="1" lg="1">
+                          <div class="d-flex justify-end">
+                            <v-btn icon @click="deleteIngredientField(index)">
+                              <v-icon color="error">mdi-delete</v-icon>
+                            </v-btn>
+                          </div>
+                        </v-col>
+                      </v-row>
+                    </v-container>
                   </v-card>
                   <!-- end ingredients  -->
-                   <v-card-actions class="justify-end mr">
-                            <v-btn class="success" @click="addIngredientField">
-                                <v-icon>mdi-plus</v-icon>
-                                <span>Ingredient</span>
-                                
+                  <v-card-actions class="justify-end mr">
+                    <v-btn class="success" @click="addIngredientField">
+                      <v-icon>mdi-plus</v-icon>
+                      <span>Ingredient</span>
+                    </v-btn>
+                  </v-card-actions>
+                  <!-- start instructions  -->
+
+                  <v-card>
+                    <v-container>
+                      <v-card-title class="ml-0 pl-0"
+                        >Instructions:</v-card-title
+                      >
+
+                      <v-row
+                        v-for="(instruction, index) in $store.state
+                          .instructions"
+                        :key="index"
+                      >
+                        <v-col cols="11" md="11" sm="11">
+                          <v-textarea
+                            rows="3"
+                            :label="`Instruction # ` + Number(index + 1)"
+                            v-model="instruction.instruction"
+                          ></v-textarea>
+                        </v-col>
+
+                        <v-col cols="1" md="1" lg="1">
+                          <div class="d-flex justify-end">
+                            <v-btn icon @click="deleteInstructionField">
+                              <v-icon color="error">mdi-delete</v-icon>
                             </v-btn>
-                    </v-card-actions>
-                    <!-- start instructions  -->
-
-                        <v-card>
-                      <v-container>
-                        <v-card-title class="ml-0 pl-0">Instructions:</v-card-title>
-                        
-                          <v-row v-for="(instruction, index) in $store.state.instructions" :key="index">
-                             
-                             
-                              <v-col cols="11" md="11" sm="11" >
-                                  <v-textarea
-                                  rows="3"
-                                  :label="`Instruction # ` + Number(index +1)"
-                                  v-model="instruction.instruction"
-                                  ></v-textarea>
-                              </v-col>
-                                
-                              <v-col cols="1" md="1" lg="1">
-                                      <div class="d-flex justify-end" >
-                                          <v-btn icon @click="deleteInstructionField">
-                                              <v-icon color="error">mdi-delete</v-icon>
-                                          </v-btn>
-                                      </div>
-                              </v-col>
-                          </v-row>
-                       
-                   </v-container>
-
+                          </div>
+                        </v-col>
+                      </v-row>
+                    </v-container>
                   </v-card>
-                    <v-card-actions class="justify-end mr">
-                            <v-btn class="success" @click="addInstructionField">
-                                <v-icon>mdi-plus</v-icon>
-                                <span>Instruction</span> 
-                            </v-btn>
-                    </v-card-actions>
-                    <!-- end of instructions  -->
+                  <v-card-actions class="justify-end mr">
+                    <v-btn class="success" @click="addInstructionField">
+                      <v-icon>mdi-plus</v-icon>
+                      <span>Instruction</span>
+                    </v-btn>
+                  </v-card-actions>
+                  <!-- end of instructions  -->
                 </v-col>
                 <!-- second collumn  -->
                 <v-col cols="12" sm="4">
@@ -191,7 +196,11 @@
                   </v-radio-group>
                 </v-col>
               </v-row>
-              <v-btn color="secondary" class="mr-4" @click.prevent="edditRecipe">
+              <v-btn
+                color="secondary"
+                class="mr-4"
+                @click.prevent="edditRecipe"
+              >
                 Edit Recipe
               </v-btn>
             </v-container>
@@ -209,33 +218,32 @@ export default {
   name: "TestNew",
   data() {
     return {
-     id: this.$route.params.id,
-     share: '',
-     recipe: {},
-     instructions: [],
-     ingrendients: [],
-     isFile: false,
-     imageUrl: '',
-     image: ''
-      
+      id: this.$route.params.id,
+      share: "",
+      recipe: {},
+      instructions: [],
+      ingrendients: [],
+      isFile: false,
+      imageUrl: "",
+      image: "",
     };
   },
-  created(){
+  created() {
     // console.log(this.id);
   },
   mounted() {
-    RecipeService.getRecipeById(this.id).then(res => {
-        this.recipe = res.data
-        this.share = this.recipe.share
-        this.$store.state.ingrendients = JSON.parse(res.data.ingredients)
-        this.$store.state.instructions = JSON.parse(res.data.instructions)
-        // console.log(res.data.ingredients, 888);
-    })
+    RecipeService.getRecipeById(this.id).then((res) => {
+      this.recipe = res.data;
+      this.share = this.recipe.share;
+      this.$store.state.ingrendients = JSON.parse(res.data.ingredients);
+      this.$store.state.instructions = JSON.parse(res.data.instructions);
+      // console.log(res.data.ingredients, 888);
+    });
   },
 
   methods: {
     pickFile(file) {
-      if(file){
+      if (file) {
         this.isFile = true;
       }
       const name = file.name;
@@ -255,40 +263,40 @@ export default {
     edditRecipe: async function() {
       // console.log(this.share);
       let data = this.gatherData();
-       console.log(this.recipe);
+      console.log(this.recipe);
       await RecipeService.updateRecipe(data);
       this.$router.push({ name: "Home" });
       //  console.log(this.$store.state.ingrendients, 999);
       //  console.log(this.$store.state.instructions, 555);
     },
 
-    addIngredientField(){
-        this.$store.state.ingrendients.push({
-            measure: '',
-            utensil: '',
-            ingredient: '',
-            action: ''
-        })
+    addIngredientField() {
+      this.$store.state.ingrendients.push({
+        measure: "",
+        utensil: "",
+        ingredient: "",
+        action: "",
+      });
     },
 
-    deleteIngredientField(index){
-        console.log(index);
-        this.$store.state.ingrendients.splice(index, 1)
+    deleteIngredientField(index) {
+      console.log(index);
+      this.$store.state.ingrendients.splice(index, 1);
     },
 
-     addInstructionField(){
-        let step = this.$store.state.instructions.length +1
-        this.$store.state.instructions.push({
-            instruction: '',
-            step: step
-        })
+    addInstructionField() {
+      let step = this.$store.state.instructions.length + 1;
+      this.$store.state.instructions.push({
+        instruction: "",
+        step: step,
+      });
     },
 
-    deleteInstructionField(index){
-        this.$store.state.instructions.splice(index, 1)
+    deleteInstructionField(index) {
+      this.$store.state.instructions.splice(index, 1);
     },
 
-     gatherData() {
+    gatherData() {
       if (!this.isFile) {
         this.image = this.recipe.imageUrl;
       }
@@ -296,8 +304,14 @@ export default {
       formData.append("image", this.image);
       formData.append("recipeName", this.recipe.name);
       formData.append("recipeType", this.recipe.type);
-      formData.append("ingredients", JSON.stringify(this.$store.state.ingrendients));
-      formData.append("instructions", JSON.stringify(this.$store.state.instructions));
+      formData.append(
+        "ingredients",
+        JSON.stringify(this.$store.state.ingrendients)
+      );
+      formData.append(
+        "instructions",
+        JSON.stringify(this.$store.state.instructions)
+      );
       formData.append("prepTime", this.recipe.prepTime);
       formData.append("cookTime", this.recipe.cookTime);
       formData.append("servings", this.recipe.servings);
@@ -308,4 +322,3 @@ export default {
   },
 };
 </script>
-

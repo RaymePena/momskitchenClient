@@ -161,7 +161,9 @@ export default {
   created() {
     recipes.getRecipeById(this.id).then((res) => {
       this.recipe = res.data;
-
+      console.log(this.recipe.favorite, 111);
+      this.selected = this.recipe.favorite;
+      console.log(this.selected, 222);
       this.ingredients = JSON.parse(res.data.ingredients);
       console.log(this.ingredients);
       this.instructions = JSON.parse(res.data.instructions);
@@ -177,17 +179,34 @@ export default {
       window.print();
     },
 
-    addtoFavorite() {
+    addtoFavorite: async function() {
       this.selected = !this.selected;
+      this.recipe.favorite = this.selected;
+      console.log(this.recipe.favorite);
+
       const userId = user.getUserId();
       if (!userId) {
         this.$router.push({ name: "Login" });
       }
-      const favorite = {
+      const favorites = {
         userId: userId,
         recipeId: this.id,
       };
-      recipes.addFavorite(favorite);
+      const recipe = {
+        _id: this.id,
+        favorite: this.recipe.favorite,
+      };
+      if (this.selected === false) {
+        console.log(this.recipe.favorite, 7777);
+        await recipes.updateFavorite(recipe);
+        console.log(this.id, 0.0);
+        await recipes.deleteSingleRecipe(this.id);
+        this.recipe = {};
+        this.$router.push({ name: "Favorite" });
+      } else {
+        recipes.addFavorite(favorites);
+        recipes.updateFavorite(recipe);
+      }
     },
 
     onScroll(e) {

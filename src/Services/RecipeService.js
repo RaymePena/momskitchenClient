@@ -19,9 +19,15 @@ export function deleteRecipe(id) {
 export function deleteFavorite(id) {
   return http().delete(`/recipe/favorite/${id}`);
 }
+export function deleteSingleRecipe(id) {
+  return http().delete(`/single-recipe/${id}`);
+}
 
 export function updateRecipe(recipe) {
   return http().put("/recipe", recipe);
+}
+export function updateFavorite(recipe) {
+  return http().put(`/recipe/${recipe._id}`, recipe);
 }
 
 export function addFavorite(favorite) {
