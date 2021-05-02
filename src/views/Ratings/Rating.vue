@@ -11,6 +11,7 @@
                 v-on="on"
                 v-bind="attrs"
                 dark
+                @click="openModal"
             >
             <v-icon>mdi-plus</v-icon>
                 <span>Review</span>
@@ -75,6 +76,8 @@
 <script>
 import * as RatingServices from '../../Services/RatingServices'
 import * as RecipeServices from '../../Services/RecipeService'
+import * as user from '../../Services/AuthService'
+
 
 export default {
     name: 'Rating',
@@ -101,15 +104,17 @@ export default {
 
     methods:{
         addRating: async function(){
-            console.log(this.ratings);
             await RatingServices.createRating(this.ratings)
-            
-
             this.isSave = true
         },
         closeDialog: function(){
             this.dialog = false
             this.isSave = false
+        },
+        openModal(){
+            if(!user.isLoggedIn()){
+                this.$router.push({name: 'Login'})
+            }
         }
     },
     

@@ -1,5 +1,25 @@
 <template>
   <div id="single-recipe">
+        <!-- snackbar  start -->
+    <v-container class="text-center">
+        <v-snackbar
+            centered
+            v-model="snackbar"
+        >
+        {{snackbarText}}
+        <template v-slot:action="{attrs}">
+            <v-btn 
+            color="primary"
+            text
+            v-bind="attrs"
+            @click="snackbar = false"
+            >
+                Close
+            </v-btn>
+        </template>
+        </v-snackbar>
+    </v-container>
+    <!-- snackbar end  -->
     <v-btn
       v-show="upFab"
       v-scroll="onScroll"
@@ -68,7 +88,32 @@
             <!-- </div> -->
           </v-flex>
           <v-divider class="mr-2 my-2 "></v-divider>
-          <h3 class="grey--text my-2 ">Ingredients:</h3>
+          <v-row class="my-1">
+              <v-col cols="6" md="6" lg="6">
+                  <h3 class="grey--text my-2 ">Ingredients:</h3>
+              </v-col>
+              
+              <v-col cols="6" md="6" lg="6">
+                <v-card-actions class="justify-end">
+                <v-tooltip bottom>
+                  <template v-slot:activator="{on, attrs}">
+                    <v-btn 
+                      color="primary"
+                      dark
+                      v-bind="attrs"
+                      v-on="on"
+                      small
+                      @click="addToGroceryList"
+                      >
+                        <v-icon>mdi-plus</v-icon>
+                        <span>To List</span>
+                    </v-btn>
+                </template>
+                  <span>Send ingredients to grocery list</span>
+                </v-tooltip>
+                </v-card-actions>
+              </v-col>
+          </v-row>
           <v-flex class="d-flex justify-start flex-wrap ">
             <v-list flat>
               <v-list-item-group multiple>
@@ -138,6 +183,7 @@ import * as review from "../../Services/RatingServices";
 // import Rating from '../Ratings/Rating'
 import DisplayRating from "../Ratings/DisplayRating";
 import Reviews from "../Ratings/Review";
+import * as GroceryService from '../../Services/GroceryServices'
 
 export default {
   name: "SingleRecipe",
@@ -155,15 +201,15 @@ export default {
       usernname: "",
       upFab: false,
       selected: false,
+      newItem: [],
+      snackbar: false,
+      snackbarText: 'Your items has been added to the grocery list!'
     };
   },
 
   created() {
     recipes.getRecipeById(this.id).then((res) => {
       this.recipe = res.data;
-      console.log(this.recipe.favorite, 111);
-      this.selected = this.recipe.favorite;
-      console.log(this.selected, 222);
       this.ingredients = JSON.parse(res.data.ingredients);
       console.log(this.ingredients);
       this.instructions = JSON.parse(res.data.instructions);
@@ -179,33 +225,41 @@ export default {
       window.print();
     },
 
-    addtoFavorite: async function() {
-      this.selected = !this.selected;
-      this.recipe.favorite = this.selected;
-      console.log(this.recipe.favorite);
+    async addToGroceryList(){
+      if(!user.isLoggedIn()){
+        this.$router.push({ name: "Login" })
+      }
+      if(this.ingredients.length === 0){
+        this.snackbarText = "There is not items in this recipe"
+      }
+      const newItems = this.ingredients.map(d => {
+        return {
+          text: d.ingredient,
+          completed: false
+          }
+      })
+        for(let item of newItems){
+          await  GroceryService.createGrocery(item)
+        }
+        this.snackbar = true
+      
+      
+    },
 
+    addtoFavorite() {
+      if(user.isLoggedIn()){
+      this.selected = !this.selected;
       const userId = user.getUserId();
       if (!userId) {
         this.$router.push({ name: "Login" });
       }
-      const favorites = {
+      const favorite = {
         userId: userId,
         recipeId: this.id,
       };
-      const recipe = {
-        _id: this.id,
-        favorite: this.recipe.favorite,
-      };
-      if (this.selected === false) {
-        console.log(this.recipe.favorite, 7777);
-        await recipes.updateFavorite(recipe);
-        console.log(this.id, 0.0);
-        await recipes.deleteSingleRecipe(this.id);
-        this.recipe = {};
-        this.$router.push({ name: "Favorite" });
-      } else {
-        recipes.addFavorite(favorites);
-        recipes.updateFavorite(recipe);
+      recipes.addFavorite(favorite);
+      }else {
+        this.$router.push({ name: "Login" })
       }
     },
 

@@ -3,14 +3,13 @@
     <h1 class="subheading grey--text">Favorites</h1>
     <v-container class="my-5 container-width">
       <!-- layout represent a row of content  -->
-      <v-layout row wrap>
+      <v-row wrap>
         <!-- v-flex can have different properties that allow me to space out the content  -->
-        <v-flex
-          xs12
-          sm6
-          md4
-          lg3
-          xlg3
+        <v-col
+          cols="12"
+          sm="6"
+          md="4"
+          lg="3"
           v-for="recipe in recipes"
           :key="recipe._id"
         >
@@ -57,8 +56,8 @@
               </v-btn>
             </v-card-actions>
           </v-card>
-        </v-flex>
-      </v-layout>
+        </v-col>
+      </v-row>
     </v-container>
   </div>
 </template>

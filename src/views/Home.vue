@@ -20,14 +20,14 @@
     </v-container>
     <v-container class="my-5 home-container">
       <!-- layout represent a row of content  -->
-      <v-layout row wrap>
+      <v-row>
         <!-- v-flex can have different properties that allow me to space out the content  -->
-        <v-flex
+        <v-col
           class="mx-0"
-          xs12
-          sm6
-          md4
-          lg3
+          cols="12"
+          sm="6"
+          md="4"
+          lg="3"
           v-for="recipe in filterRecipes"
           :key="recipe._id"
         >
@@ -65,8 +65,8 @@
               >Create By: {{ recipe.author.username }}
             </v-card-text>
           </v-card>
-        </v-flex>
-      </v-layout>
+        </v-col>
+      </v-row>
       <v-layout>
         <v-flex class=" d-flex justify-center my-10">
           <v-btn

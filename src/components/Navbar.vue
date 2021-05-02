@@ -1,8 +1,9 @@
 <template>
   <div class="navbar">
+  
     <v-app-bar flat app color="secondary" dark>
       <div class="d-flex align-center">
-        <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+        <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
         <v-toolbar-title
           ><v-btn text to="/" exact
             ><em>Mom's Kitchen</em></v-btn

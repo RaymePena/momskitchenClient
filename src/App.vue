@@ -1,9 +1,10 @@
 <template>
   <v-app class="grey ligthen-4">
+
     <Navbar />
+      
 
     <v-main class="mx-4 mb-4">
-        
       <router-view />
     </v-main>
     <Footer />
@@ -30,6 +31,7 @@ export default {
   data: () => ({
     //
     drawer: false,
+    
   }),
 
   methods: {
