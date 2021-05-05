@@ -57,7 +57,7 @@
                 size="14"
               ></v-rating>
               <div class="grey--text ml-1">{{recipe.averageRating}}</div>
-              <v-icon class="light-green--text ml-4">mdi-heart</v-icon>
+              
               
             </v-row>
 
@@ -155,7 +155,5 @@ a {
   text-decoration: none;
 }
 
-.home-container {
-  width: 75%;
-}
+
 </style>

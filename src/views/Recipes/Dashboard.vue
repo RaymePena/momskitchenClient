@@ -117,7 +117,7 @@ export default {
 a {
   text-decoration: none;
 }
-.container-width{
+/* .container-width{
   width: 75%;
-}
+} */
 </style>

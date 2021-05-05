@@ -35,23 +35,26 @@
     </v-btn>
 
     <v-container> </v-container>
-    <v-card class="mx-auto " max-width="900">
+    <v-card class="mx-auto" max-width="900" >
       <v-container class="my-10 container">
         <v-layout row>
           <v-flex>
+            <v-container class="review">
             <v-card-title
               class="justify-start grey--text h2--text mt-5 display-1"
               >{{ recipe.name }}</v-card-title
             >
             <v-row>
-              <v-col cols="12" md="12" lg="12">
+              <v-col cols="12" md="12" lg="12" >
                 <DisplayRating :id="id" />
               </v-col>
             </v-row>
+            </v-container>
             <!-- <v-card-subtitle class="offset-1 text--grey" >Created By: {{recipe.author.username}}</v-card-subtitle> -->
             <v-img
               max-height="400"
-              max-width="600"
+              max-width="700"
+              
               :src="$store.state.getImageUrl + recipe.imageUrl"
               class="mx-auto my-5"
             ></v-img>
@@ -88,6 +91,7 @@
             <!-- </div> -->
           </v-flex>
           <v-divider class="mr-2 my-2 "></v-divider>
+           <v-container class="review">
           <v-row class="my-1">
               <v-col cols="6" md="6" lg="6">
                   <h3 class="grey--text my-2 ">Ingredients:</h3>
@@ -114,6 +118,7 @@
                 </v-card-actions>
               </v-col>
           </v-row>
+         
           <v-flex class="d-flex justify-start flex-wrap ">
             <v-list flat>
               <v-list-item-group multiple>
@@ -137,7 +142,7 @@
               </v-list-item-group>
             </v-list>
           </v-flex>
-
+          
           <v-divider class="my-2 "></v-divider>
           <h3 class="grey--text my-2 ">Instructions:</h3>
           <v-flex class="d-flex justify-start flex-wrap ">
@@ -165,12 +170,13 @@
               </v-list-item-group>
             </v-list>
           </v-flex>
+          </v-container>
         </v-layout>
       </v-container>
     </v-card>
     <v-divider></v-divider>
-    <v-container>
-      <div class="display-1 ">Reviews</div>
+    <v-container class="review" >
+      <div class="display-1 ">Reviews:</div>
       <Reviews :recipeId="id" />
     </v-container>
   </div>
@@ -320,8 +326,8 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  width: 80%;
+.review {
+  width: 85%;
   height: auto;
 }
 </style>

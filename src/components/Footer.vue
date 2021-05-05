@@ -30,7 +30,6 @@ export default {
         return {
         icons: [
         'mdi-facebook',
-        'mdi-linkedin',
         'mdi-instagram',
       ],
         }
