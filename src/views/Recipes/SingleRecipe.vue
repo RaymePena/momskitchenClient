@@ -215,6 +215,8 @@ export default {
       this.instructions = JSON.parse(res.data.instructions);
     });
 
+   
+
     review.getRatingById(this.id).then((res) => {
       console.log(res, 888);
     });
@@ -245,6 +247,8 @@ export default {
       
       
     },
+
+   
 
     addtoFavorite() {
       if(user.isLoggedIn()){

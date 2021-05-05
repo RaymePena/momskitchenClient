@@ -2,7 +2,8 @@
 <v-container class="mx-0">
 
     <v-row align="center"
-    class="mx-0">
+    class="mx-0"
+    >
         
         <v-rating
             v-model="ratings"
@@ -14,7 +15,7 @@
             dense
         >
     </v-rating>
-        <div class="ml-4">{{ratings}}  </div>
+        <div class="ml-4">{{ratings? ratings.toFixed(2): ''}}  </div>
         <div class="ml-4">
             <Rating /> 
         </div>

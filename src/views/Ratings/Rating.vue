@@ -24,32 +24,44 @@
                 <span>Please, rate this recipe!</span>
             </v-card-title>
             <v-card-text>
+                
                 <v-rating
                 v-model.number="ratings.rating"
                 background-color="primary"
                 color="primary"
                 size="40"
+                
                 >
                 </v-rating>
+               
                 <v-divider></v-divider>
                 <v-text-field 
-                v-model="ratings.title"
-                label="Title"
+                    v-model="ratings.title"
+                    label="Title"
+                    required
+                    :rules="titleRule"
                 >
 
                 </v-text-field>
                 <v-form
                 ref="form"
-                lazy-validation
+                v-model="valid"
                 >
                 <v-textarea
                     placeholder="How did you like this recipe? What changes did you made?"
                     v-model="ratings.comment"
+                    required
+                    :rules="commentRule"
+                    
                 >
 
                 </v-textarea>
                     <v-card-actions class=" justify-end">
-                        <v-btn color="primary" @click.prevent="addRating">Submit</v-btn>
+                        <v-btn 
+                        color="primary" 
+                        @click.prevent="addRating"
+                        :disabled="!valid"
+                        >Submit</v-btn>
                         <v-btn color="error" @click="dialog = false">Close</v-btn>
                     </v-card-actions>
                 </v-form>
@@ -75,7 +87,7 @@
 
 <script>
 import * as RatingServices from '../../Services/RatingServices'
-import * as RecipeServices from '../../Services/RecipeService'
+// import * as RecipeServices from '../../Services/RecipeService'
 import * as user from '../../Services/AuthService'
 
 
@@ -86,26 +98,34 @@ export default {
             id: this.$route.params.id,
             dialog: false,
             ratings: {},
-            isSave: false
+            isSave: false,
+            titleRule: [(v) => !!v || "Title is required"],
+            commentRule: [(v) => !!v || "Comment is required"],
+            ratingRule: [(v) => !!v || "Ratings are is required"],
+            valid: false
         }
     },
+
+    
+
     created(){
         this.ratings.recipe = this.id
 
         if(this.dialog){
             this.isSave = false
         }
-        RecipeServices.getRecipeById(this.id).then(res => {
-            console.log(res.data.averageRating, 999);
-            this.ratings.rating = res.data.averageRating
-        })
+        // RecipeServices.getRecipeById(this.id).then(res => {
+        //     console.log(res.data.averageRating, 999);
+        //     this.ratings.rating = res.data.averageRating
+        // })
         
     },
 
     methods:{
-        addRating: async function(){
+        async addRating(){
             await RatingServices.createRating(this.ratings)
             this.isSave = true
+            this.$root.$emit('refreshData')
         },
         closeDialog: function(){
             this.dialog = false
@@ -117,7 +137,7 @@ export default {
             }
         }
     },
-    
+
 
     
 }
