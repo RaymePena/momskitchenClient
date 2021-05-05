@@ -11,8 +11,8 @@
         >
       </div>
       <v-spacer></v-spacer>
-      <v-btn text to="/sign-up" v-if="!$store.state.isLoggedIn">
-        <span class="mr-2">Sign Up</span>
+      <v-btn text to="/sign-up" v-if="!$store.state.isLoggedIn" class="hidden-md-and-down">
+        <span class="mr-2 ">Sign Up</span>
         <v-icon>mdi-login-variant</v-icon>
       </v-btn>
       <v-btn text to="/login" v-if="!$store.state.isLoggedIn" exact>
