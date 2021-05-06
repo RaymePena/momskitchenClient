@@ -72,6 +72,7 @@ export default new Vuex.Store({
       "slice",
       "chopped",
       "roll out",
+      "minced",
       "knead",
       "add",
       "bake",
@@ -82,7 +83,8 @@ export default new Vuex.Store({
       "cook",
       "fry",
       "grill",
-      "to taste"
+      "to taste",
+      
     ],
     dishesType: [
       "Pasta",
