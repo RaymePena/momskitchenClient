@@ -46,10 +46,7 @@ export default new Vuex.Store({
       "8",
       "9",
       "10",
-      "16 oz",
-      "8 oz",
-      "4 oz",
-      "2 oz",
+     
     ],
     utensils: [
       "none",
@@ -71,9 +68,9 @@ export default new Vuex.Store({
     actions: [
       "none",
       "divided",
-      "dice",
+      "diced",
       "slice",
-      "chop",
+      "chopped",
       "roll out",
       "knead",
       "add",
@@ -85,6 +82,7 @@ export default new Vuex.Store({
       "cook",
       "fry",
       "grill",
+      "to taste"
     ],
     dishesType: [
       "Pasta",
@@ -101,6 +99,7 @@ export default new Vuex.Store({
       "Dessert",
       "Sauces",
       "Drinks",
+      "Mexican"
     ],
     ingreds: ["none", "onion", "butter", "lemon", "water"],
     ingrendients: [{ measure: "", utensil: "", ingredient: "", action: "" }],
