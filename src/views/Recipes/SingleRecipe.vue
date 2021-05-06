@@ -50,7 +50,7 @@
               </v-col>
             </v-row>
             </v-container>
-            <!-- <v-card-subtitle class="offset-1 text--grey" >Created By: {{recipe.author.username}}</v-card-subtitle> -->
+            <v-card-subtitle class="offset-1 text--grey" >Created By: {{username}}</v-card-subtitle>
             <v-img
               max-height="400"
               max-width="700"
@@ -75,10 +75,7 @@
             <v-chip color="success" class="mr-2 my-2" label outlined
               >Total: {{ setTotalTime }}</v-chip
             >
-            <!-- <v-chip color="primary" class="mr-2 my-2"  label outlined @click="printRecipe()">
-                                <v-icon>mdi-printer</v-icon>
-                                <span class="mx-2">Print</span>
-                            </v-chip> -->
+           
             <v-btn bottom fab icon @click.prevent="addtoFavorite">
               <v-icon
                 size="35"
@@ -185,7 +182,7 @@
 <script>
 import * as recipes from "../../Services/RecipeService";
 import * as user from "../../Services/AuthService";
-import * as review from "../../Services/RatingServices";
+
 // import Rating from '../Ratings/Rating'
 import DisplayRating from "../Ratings/DisplayRating";
 import Reviews from "../Ratings/Review";
@@ -204,7 +201,7 @@ export default {
       recipe: {},
       ingredients: [],
       instructions: [],
-      usernname: "",
+      username: "",
       upFab: false,
       selected: false,
       newItem: [],
@@ -216,16 +213,18 @@ export default {
   created() {
     recipes.getRecipeById(this.id).then((res) => {
       this.recipe = res.data;
+       if(this.recipe.author.username){
+         this.username = this.recipe.author.username
+       }
       this.ingredients = JSON.parse(res.data.ingredients);
-      console.log(this.ingredients);
       this.instructions = JSON.parse(res.data.instructions);
+     
+    
     });
 
    
 
-    review.getRatingById(this.id).then((res) => {
-      console.log(res, 888);
-    });
+   
   },
 
   methods: {
@@ -254,8 +253,6 @@ export default {
       
     },
 
-   
-
     addtoFavorite() {
       if(user.isLoggedIn()){
       this.selected = !this.selected;
@@ -278,6 +275,7 @@ export default {
       const top = window.pageYOffset || e.target.scrollTop || 0;
       this.upFab = top > 20;
     },
+
     backTop() {
       window.scrollTo({
         top: 0,
@@ -286,6 +284,7 @@ export default {
       });
     },
   },
+
   computed: {
     setPreTime() {
       if (Number(this.recipe.prepTime) < 60) {
@@ -296,6 +295,7 @@ export default {
         return `${hours} hr: ${minutes} mins`;
       }
     },
+
     setCookTime() {
       if (Number(this.recipe.cookTime) < 60) {
         return `${Number(this.recipe.cookTime)} mins`;
@@ -305,6 +305,7 @@ export default {
         return `${hours} hr: ${minutes} mins`;
       }
     },
+
     setTotalTime() {
       if (
         Number(this.recipe.prepTime) < 60 &&

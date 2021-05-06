@@ -110,7 +110,7 @@ export default {
   methods: {
     getRecipes: async function() {
       const data = await recipie.getAllRecipe(this.page);
-      console.log(data.data)
+      console.log(data.data, 888)
       for (let recip of data.data) {
         console.log(recip.share);
         if (recip.share === true) {
