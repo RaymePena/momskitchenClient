@@ -46,6 +46,9 @@ export default new Vuex.Store({
       "8",
       "9",
       "10",
+      " 8 once",
+      "4 once",
+      "16 once"
      
     ],
     utensils: [
@@ -66,9 +69,7 @@ export default new Vuex.Store({
       "small",
       "large",
       "medium",
-      " 8 once",
-      "4 once",
-      "16 once",
+      
     ],
     actions: [
       "none",
@@ -89,6 +90,8 @@ export default new Vuex.Store({
       "fry",
       "grill",
       "to taste",
+      "quartered",
+      "crumbled"
       
     ],
     dishesType: [
