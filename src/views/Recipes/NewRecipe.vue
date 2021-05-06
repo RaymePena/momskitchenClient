@@ -59,8 +59,8 @@
                             label="Qty"
                             dense
                             required
-                            @input="$v.ingredient.Whole.$touch()"
-                            @blur="$v.ingredient.Whole.$touch()"
+                            @input="$v.ingredient.whole.$touch()"
+                            @blur="$v.ingredient.whole.$touch()"
                           >
                           </v-autocomplete>
                         </v-col>
