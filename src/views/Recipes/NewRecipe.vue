@@ -52,9 +52,6 @@
                             small-chips
                             label="Qty"
                             dense
-                            required
-                            @input="$v.ingredient.whole.$touch()"
-                            @blur="$v.ingredient.whole.$touch()"
                           >
                           </v-autocomplete>
                         </v-col>
@@ -336,6 +333,7 @@ export default {
         utensil: "",
         ingredient: "",
         action: "",
+        whole: ""
       });
     },
 
