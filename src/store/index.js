@@ -46,6 +46,10 @@ export default new Vuex.Store({
       "8",
       "9",
       "10",
+      "16 oz",
+      "8 oz",
+      "4 oz",
+      "2 oz",
     ],
     utensils: [
       "none",
