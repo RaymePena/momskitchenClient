@@ -31,12 +31,6 @@
                     @blur="$v.RecipeType.$touch()"
                   >
                   </v-autocomplete>
-                  <!-- <v-text-field
-                    v-model="RecipeType"
-                    label="Recipe Type"
-                    required
-                  ></v-text-field> -->
-                  <!-- start ingredients  -->
                   <v-card>
                     <v-container>
                       <v-card-title class="ml-0 pl-0"
@@ -173,7 +167,7 @@
                       accept="image/*"
                       prepend-icon="mdi-camera"
                       @change="pickFile"
-                      label="Pick an Image"
+                      label="Pick an Image (900x900 max)"
                     >
                     </v-file-input>
 
